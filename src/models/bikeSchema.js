@@ -25,9 +25,9 @@ const bikeSchema = new mongoose.Schema({
         unique:true
     },
     isAvailable:{
-        type:String,
-        enum:["Yes", "No"],
-        default:"yes"
+        type:Boolean,
+        
+        default:true
     },
     price:{
         type:String,
