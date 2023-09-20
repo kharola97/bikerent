@@ -10,3 +10,5 @@ const ownerData = async(req, res)=>{
     res.status(201).send({status:true, data:ownerCreated})
 
 }
+
+module.exports.ownerData = ownerData
