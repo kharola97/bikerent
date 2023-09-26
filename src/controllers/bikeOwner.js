@@ -29,3 +29,5 @@ const deleteBike = async(req, res)=>{
 }
 
 module.exports.ownerData = ownerData
+module.exports.addBike = addBike
+module.exports.deleteBike = deleteBike

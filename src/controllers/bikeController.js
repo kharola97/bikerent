@@ -30,3 +30,4 @@ const bookBike = async(req, res)=>{
 
 module.exports.bikeDetails = bikeDetails
 module.exports.getBike = getBike
+module.exports.bookBike = bookBike

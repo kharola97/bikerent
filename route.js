@@ -2,10 +2,15 @@ const express = require('express');
 const router = express.Router();
 const userController = require("./src/controllers/userController")
 const bikeController = require("./src/controllers/bikeController")
-const owner = require("./src/controllers/bikeOwner")
+const ownerController = require("./src/controllers/bikeOwner")
 router.post("/user", userController.createUser)
 router.post("/bike",  bikeController.bikeDetails)
-router.post("/owner", owner.ownerData)
+router.post("/owner", ownerController.ownerData)
+router.put("/owner/addbike", ownerController.addBike)
+router.delete("/owner/bikes", ownerController.deleteBike)
+router.get("/getbikes", bikeController.getBike)
+router.put("/bookbike/:userId/bike/:bikeId", bikeController.bookBike)
+
 
 
 
