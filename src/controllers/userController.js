@@ -14,7 +14,6 @@ const createUser = async(req,res)=>{
     if (!isValidPhone(phone))
       return res.status(400).send({
         status: false,
-        status: false,
         message: "Please provide a valid indian phone no.",
       });
     if (!isValidEmail(email))
