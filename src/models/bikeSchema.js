@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const objectId= mongoose.Schema.Types.ObjectId
-
+const { gfs, upload } = require("../middleware/Gridfs");
 
 const bikeSchema = new mongoose.Schema({
     bikename:{
@@ -36,7 +36,10 @@ const bikeSchema = new mongoose.Schema({
     isDeleted:{
             type:Boolean,
             default:false
-        }
+        },
+    image: {
+            type: String, 
+          },
     
 },{timestamps:true})
 

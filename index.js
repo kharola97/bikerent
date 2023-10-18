@@ -3,7 +3,10 @@ const app = express()
 const mongoose = require("mongoose")
 
 const route = require("./route")
+const mult = require('multer')
 
+
+app.use(mult().any())
 app.use(express.json())
 
 mongoose.connect("mongodb+srv://ankitdb:ankit321@cluster0.nz06g9j.mongodb.net/bikerent-DB?retryWrites=true&w=majority", {
