@@ -1,16 +1,24 @@
 const mongoose = require("mongoose")
 const userModel = require("../models/userModel")
 const {isValidPhone,isValidEmail} = require("../Validation/Regex")
-
+const upoloadFile = require("../aws/s3service")
+const uploadFile = require("../aws/s3service")
 
 const createUser = async(req,res)=>{
    try {
      const data = req.body
+     const file = req.files
+     
    const  {name,phone,email,password,address} = data
    const {street, city, state} = data.address
     if(!name || !phone || !email || !password || !address || !street || !city || !state){
         res.status(400).send({status:false,message:"Please fill all the details"})
     }
+    if(!req.files){
+      res.status(400).send({status:false,message:"Please upload your image"})
+    }
+    const profilePic = await uploadFile(file[0])
+    data.profileImage = profilePic
     if (!isValidPhone(phone))
       return res.status(400).send({
         status: false,

@@ -43,7 +43,10 @@ const userSchema = new mongoose.Schema({
     isDeleted:{
         type:Boolean,
         default:false
-    }
+    },
+    profileImage:{
+        type:String
+    },
 },{timestamps:true})
 
 module.exports = mongoose.model("user", userSchema)
