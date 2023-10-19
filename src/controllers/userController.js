@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const userModel = require("../models/userModel")
 const {isValidPhone,isValidEmail} = require("../Validation/Regex")
-const upoloadFile = require("../aws/s3service")
+const jwt = require("jsonwebtoken")
 const uploadFile = require("../aws/s3service")
 
 const createUser = async(req,res)=>{
@@ -36,6 +36,22 @@ const createUser = async(req,res)=>{
     catch (err) {
         return res.status(500).send({ status: false, message: err.message });
     } 
+}
+
+const loginUser = async(req,res)=>{
+  const {email,password} = req.body
+  let finduser = await userModel.findOne({email:email})
+  if(!finduser){
+    res.status(401).send({status:false,message:"Coulnt find user"})
+  }
+  let token = jwt.sign({userId:finduser._id}, "secret", {expiresIn:"1h"})
+}
+const forgotPassword = async(req, res)=>{
+  const{email} = req.body.email
+  const user = await userModel.find({email:email})
+  if(!user){
+    res.status(400).send({status:false,message:"Email does not exist"})
+  }
 }
 
 
